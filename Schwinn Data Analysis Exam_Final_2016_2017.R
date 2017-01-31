@@ -13,15 +13,32 @@ recipes <- matrix(c(125,125,125,2,0,150,70,400,3,80,50,20,250,4,500
 #First calculate the inverse of the recipes matrix
 Inv <- solve (recipes)  
 #Compute Inv of A * b to get X
-Solution <- Inv%%totals
+Solution <- Inv%*%totals
 #We found the solution to the system of equations
 #Now we combine that with our predifined food constraints 
 #to find the number of people we will serve
-Number_people <- Solution[1,1]*6+Solution[2,1]*8+
+Number_served <- Solution[1,1]*6+Solution[2,1]*8+
   Solution[3,1]*10+Solution[4,1]*5+Solution[5,1]*6
-Number_people
-# We know that we can serve 600 hundred people
-
+#We have 600 people served but that is for 5 different meals
+#So we must take 600 divided by 5
+Number_people <- Number_served/5
+#Part 1)
+# We know that we can serve 120 hundred people
+ 
+# Calculate the number of each dessert we make during the week
+#1 pound cake serves 6 people
+pound_cake <- Number_people/6
+#1 kouglof serves 8
+kouglof <- Number_people/8
+#20 crepes serve 10 people
+crepes <- Number_people/(10/20)
+#1 floating island serves 5
+floating_island <- Number_people/5
+#18 beignets serve 6 people
+beignets <- Number_people/(6/18)
+#Part 2)
+#We need to make 20 pound cakes, 15 kouglof, 240 crepes,
+#24 floating islands, and 360 beignets
 
 
 
